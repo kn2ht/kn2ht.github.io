@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랜덤 문구</title>
+</head>
+<body>
+    <h1 id="randomMessage"></h1>
+
+    <script>
+        // 랜덤 문구 목록
+        const messages = [
+            " 당신은 타노스에 의해 사라졌습니다.",
+            "축하합니다. 타노스의 핑거스냅에도 살아남으셨군요."
+        ];
+
+        // 50% 확률로 문구를 선택하는 함수
+        function showRandomMessage() {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            document.getElementById("randomMessage").innerText = messages[randomIndex];
+        }
+
+        // 페이지 로드 시 실행
+        window.onload = showRandomMessage;
+    </script>
+</body>
+</html>
