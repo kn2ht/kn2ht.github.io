@@ -1,28 +1,47 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>랜덤 문구</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>마니또 결과 공개</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#fff7f2,#ffeef4);color:#2b2326;font-family:Arial,"Apple SD Gothic Neo",sans-serif}.wrap{max-width:520px;margin:0 auto;padding:28px 16px 70px}.hero{text-align:center;padding:26px 18px;border-radius:28px;background:#fff;box-shadow:0 10px 30px rgba(255,107,139,.22);border:2px solid #ffd3df}.badge{display:inline-block;padding:7px 14px;border-radius:999px;background:#ffedf3;color:#ff4d79;font-weight:900;font-size:13px;margin-bottom:10px}h1{margin:0;font-size:34px;color:#ff4d79}.desc{margin:10px 0 0;color:#7b6870;font-size:14px;line-height:1.5}.section-title{margin:26px 4px 12px;font-size:18px;font-weight:900}.name-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.name-btn{width:100%;border:0;border-radius:18px;padding:16px 10px;background:#fff;color:#2b2326;font-size:17px;font-weight:900;box-shadow:0 6px 0 #ffd1dd;border:2px solid #ffd8e3;cursor:pointer}.name-btn:active{transform:translateY(4px);box-shadow:0 2px 0 #ffd1dd}.result-card{display:none;margin-top:22px;padding:22px 18px;border-radius:26px;background:#fff;border:2px solid #ffc8d8;box-shadow:0 12px 28px rgba(255,107,139,.22);text-align:center}.count{font-size:72px;line-height:1;font-weight:900;color:#ff4d79;margin:18px 0}.person-name{font-size:25px;font-weight:900;color:#ff4d79;margin-bottom:12px}.result-line{padding:12px 14px;margin:8px 0;border-radius:16px;background:#fff5f8;font-size:17px;font-weight:800;text-align:left}.reason{margin-top:12px;padding:14px;border-radius:18px;background:#fffaf1;color:#6b5140;font-size:15px;line-height:1.45;text-align:left;border:1px dashed #ffc57e}.final{margin-top:14px;font-size:28px;font-weight:900}.success{color:#ff4d79}.fail{color:#6c7a99}.main-btn{width:100%;margin-top:16px;padding:16px;border:0;border-radius:18px;background:#ff4d79;color:white;font-size:17px;font-weight:900;box-shadow:0 6px 0 #d82d58}.all-list{display:none;margin-top:22px}.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.summary div{background:#fff;border:2px solid #ffd8e3;border-radius:18px;padding:12px 6px;text-align:center;font-weight:900}.summary span{display:block;margin-top:4px;color:#ff4d79;font-size:22px}.all-card{background:#fff;border:2px solid #ffd8e3;border-radius:22px;padding:16px;margin-bottom:12px;box-shadow:0 7px 18px rgba(255,107,139,.14)}.all-name{font-size:20px;font-weight:900;color:#ff4d79;margin-bottom:8px}.all-main{font-size:15px;line-height:1.65}.all-reason{margin-top:8px;padding:10px;border-radius:14px;background:#fffaf1;color:#6b5140;font-size:14px}.top-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}.small-btn{width:100%;margin-top:14px;padding:14px 10px;border:0;border-radius:16px;background:#2b2326;color:white;font-weight:900;font-size:15px}@media(max-width:360px){h1{font-size:30px}.name-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-    <h1 id="randomMessage"></h1>
-
-    <script>
-        // 랜덤 문구 목록
-        const messages = [
-            " 당신은 타노스에 의해 사라졌습니다.",
-            "축하합니다. 타노스의 핑거스냅에도 살아남으셨군요."
-        ];
-
-        // 50% 확률로 문구를 선택하는 함수
-        function showRandomMessage() {
-            const randomIndex = Math.floor(Math.random() * messages.length);
-            document.getElementById("randomMessage").innerText = messages[randomIndex];
-        }
-
-        // 페이지 로드 시 실행
-        window.onload = showRandomMessage;
-    </script>
+<div class="wrap">
+<section class="hero"><div class="badge">MANITO REVEAL</div><h1>🎁 마니또 결과 공개</h1><p class="desc">이름을 누르면 예측한 사람, 실제 마니또, 성공 여부가 차례대로 공개됩니다.</p></section>
+<div class="section-title">이름 선택하기</div>
+<div id="nameGrid" class="name-grid"></div>
+<div id="resultCard" class="result-card"></div>
+<button class="main-btn" onclick="showAll()">전체 결과 한눈에 보기</button>
+<div id="allList" class="all-list"></div>
+</div>
+<script>
+const data=[
+{name:"배주성",guess:"김윤채",actual:"이서령",reason:"평소보다 말을 자주 걸어서 의심했어."},
+{name:"이서령",guess:"김미성",actual:"김윤채",reason:"쪽지 말투가 너무 비슷했어."},
+{name:"김윤채",guess:"송건호",actual:"송건호",reason:"간식 취향을 정확히 알고 있었어."},
+{name:"김미성",guess:"박찬유",actual:"김수련",reason:"괜히 주변을 맴도는 느낌이 있었어."},
+{name:"송건호",guess:"양윤정",actual:"박찬유",reason:"선물 포장 스타일이 딱 그 사람 같았어."},
+{name:"박찬유",guess:"김수련",actual:"김수련",reason:"평소엔 안 하던 배려를 해서 눈치챘어."},
+{name:"김수련",guess:"김소윤",actual:"구윤지",reason:"메시지 표현이 김소윤 느낌이었어."},
+{name:"양윤정",guess:"신성훈",actual:"장병재",reason:"장난치는 방식이 비슷했어."},
+{name:"김소윤",guess:"장병재",actual:"신성훈",reason:"선물 고르는 센스가 장병재 같았어."},
+{name:"신성훈",guess:"배서영",actual:"여지원",reason:"너무 티 안 내려고 해서 더 의심됐어."},
+{name:"장병재",guess:"여지원",actual:"배서영",reason:"필체가 여지원이랑 닮았다고 느꼈어."},
+{name:"배서영",guess:"김가은",actual:"김가은",reason:"내가 좋아하는 걸 알고 있어서 확신했어."},
+{name:"여지원",guess:"차나영",actual:"정다은",reason:"분위기가 차나영이 챙겨준 것 같았어."},
+{name:"김가은",guess:"정다은",actual:"차나영",reason:"정다은이 평소에 세심해서 의심했어."},
+{name:"차나영",guess:"구윤지",actual:"배주성",reason:"쪽지에 적힌 말투가 구윤지 같았어."},
+{name:"정다은",guess:"배주성",actual:"김미성",reason:"배주성이 갑자기 친절해져서 의심했어."},
+{name:"구윤지",guess:"이서령",actual:"배서영",reason:"선물 취향을 제일 잘 아는 사람이 이서령 같았어."}
+];
+const nameGrid=document.getElementById("nameGrid"),resultCard=document.getElementById("resultCard"),allList=document.getElementById("allList");
+data.forEach((p,i)=>{const btn=document.createElement("button");btn.className="name-btn";btn.innerText=p.name;btn.onclick=()=>reveal(i);nameGrid.appendChild(btn);});
+function reveal(i){allList.style.display="none";resultCard.style.display="block";const p=data[i];let c=3;resultCard.innerHTML=`<div class="person-name">${p.name}님의 결과는?</div><div class="count">3</div>`;const timer=setInterval(()=>{c--;if(c>0){resultCard.innerHTML=`<div class="person-name">${p.name}님의 결과는?</div><div class="count">${c}</div>`;}else{clearInterval(timer);const ok=p.guess===p.actual;resultCard.innerHTML=`<div class="person-name">${p.name}</div><div class="result-line">예측: <b>${p.guess}</b></div><div class="reason">💭 예측 이유: ${p.reason}</div><div class="result-line">실제 마니또: <b>${p.actual}</b></div><div class="final ${ok?"success":"fail"}">${ok?"성공 🎉":"실패 💔"}</div><div class="top-btns"><button class="small-btn" onclick="scrollToTopNames()">다른 이름 보기</button><button class="small-btn" onclick="showAll()">전체 보기</button></div>`;}},850);resultCard.scrollIntoView({behavior:"smooth",block:"center"});}
+function showAll(){resultCard.style.display="none";allList.style.display="block";const total=data.length,success=data.filter(p=>p.guess===p.actual).length,fail=total-success;let html=`<div class="summary"><div>전체<span>${total}</span></div><div>성공<span>${success}</span></div><div>실패<span>${fail}</span></div></div>`;data.forEach(p=>{const ok=p.guess===p.actual;html+=`<div class="all-card"><div class="all-name">${p.name} ${ok?"🎉":"💔"}</div><div class="all-main">${p.name} → 예측 <b>${p.guess}</b> / 실제 <b>${p.actual}</b> / <b>${ok?"성공":"실패"}</b></div><div class="all-reason">💭 ${p.reason}</div></div>`;});allList.innerHTML=html;allList.scrollIntoView({behavior:"smooth",block:"start"});}
+function scrollToTopNames(){document.getElementById("nameGrid").scrollIntoView({behavior:"smooth",block:"start"});}
+</script>
 </body>
 </html>
